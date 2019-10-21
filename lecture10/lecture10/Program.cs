@@ -1,45 +1,68 @@
-﻿using System;
+﻿using System; 
+interface ICalc
+    {
+         void Calc();
+    }
+class Square : ICalc
+    {
+        string txt = "Square";
+        double[] square = new double[10];
+        public void Calc()
+        {
+        for (int i = 0; i < square.Length; i++)
+        {
+            int x = i + 1;
+            square[i] = Math.Pow(x,2);
+            Console.WriteLine("This is {0}. CLR Type is {1}. Square is {2}.", txt, GetType(), square[i]);
+            }
+           
+        }
+    }
 
-
-
-
-namespace lecture10
+class Circle : ICalc
 {
-    interface ISquardR
+    string txt = "Circle";
+    double[] circle = new double[10];
+    public void Calc()
     {
-        void Squard(int radius);
-    }
-
-    class Round : ISquardR
-    {
-        double SquardR;
-        public void Squard(int radius)
+        for(int i = 0; i < circle.Length; i++)
         {
-            SquardR=Math.PI*radius*radius;
+            int x = i + 1;
+            circle[i] = Math.PI * Math.Pow(x, 2);
+            Console.WriteLine("This is {0}. CLR Type is {1}. Square is {2}.", txt, GetType(),Math.Round(circle[i],2));
         }
     }
+}
 
-    interface ISquardP
+class Triangle : ICalc
+{
+    string txt = "Triangle";
+    int[] triangle = new int[10];
+    public void Calc()
     {
-        void Squard(int a);
-    }
-
-    class Box : ISquardP
-    {
-        int SquardP;
-        public void Squard(int a)
+        for(int i = 0; i < triangle.Length; i++)
         {
-            SquardP = a * a; 
+            int x = i + 1;
+            triangle[i] = (x * x) / 2;
+            Console.WriteLine("This is {0}. CLR Type is {1}. Square is {2}.", txt, GetType(), triangle[i]);
         }
     }
-
-    interface ISquard
-
+}
+namespace lecture10
+{      
     class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Square square = new Square();
+            Circle circle = new Circle();
+            Triangle triangle = new Triangle();
+            square.Calc();
+            Console.WriteLine();
+            circle.Calc();
+            Console.WriteLine();
+            triangle.Calc();
+            Console.ReadKey();
         }
     }
 }
